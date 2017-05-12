@@ -15,6 +15,7 @@
 #define CONSTANT_METHOD_TYPE 16
 #define CONSTANT_INVOKE_DYNAMIC 18
 
+<<<<<<< HEAD
 //access_flags
 #define ACC_PUBLIC 0x0001
 #define ACC_FINAL 0x0010
@@ -25,11 +26,17 @@
 #define ACC_ANNOTATION 0x2000
 #define ACC_ENUM 0x4000
 
+=======
+>>>>>>> 696d02f01bf5a12d9814c22365a1bb7387c8de3e
 #define u1 unsigned char
 #define u2 unsigned short
 #define u4 unsigned int
 #define u8 double
+<<<<<<< HEAD
 //& 0xFF È¡ï¿½ß°ï¿½Î» 0000ï¿½ï¿½0000ï¿½ï¿½0000ï¿½ï¿½0010 & 0xFF => 0000ï¿½ï¿½0010
+=======
+//& 0xFF È¡¸ß°ËÎ» 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
+>>>>>>> 696d02f01bf5a12d9814c22365a1bb7387c8de3e
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
 #define _2_u2(val) val[0] << 8 | val[1]
 #define _2_u8(val) val[7] | val[6] << 8 | val[5] << 16 |val[4] << 24 | val[3] << 32 | val[2] << 40 | val[1] << 48 | val[0] << 56 
