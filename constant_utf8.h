@@ -16,12 +16,13 @@ public:
 	{
 		char tmp[3];
 		in.read(tmp, 2);
-		this->len = (u1)tmp[0] << 8 | (u1)tmp[1];
-		char *buf = new char[this->len + 1];
+		this->length = _2_u2(tmp);
+		char *buf = new char[this->length + 1];
+        memset(buf, 0, this->length + 1);
 		in.read(buf, this->len);
 	}
 
 private:
-	u2 len;
+	u2 length;
 	char *data;
 };

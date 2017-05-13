@@ -1,6 +1,6 @@
 #pragma once
 #include "common.h"
-#include <iostream>
+#include <fstream>
 class constant_info
 {
 public:
