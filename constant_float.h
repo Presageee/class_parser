@@ -11,4 +11,4 @@ public:
     }
 private:
     u4 val;
-}
+};

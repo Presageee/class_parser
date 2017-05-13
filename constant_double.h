@@ -15,4 +15,4 @@ public:
 private:
     u4 hight_val;
     u4 low_val;
-}
+};

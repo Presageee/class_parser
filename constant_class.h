@@ -11,4 +11,4 @@ public:
     }
 private:
     u2 name_index;
-}
+};
