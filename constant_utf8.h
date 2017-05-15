@@ -12,14 +12,14 @@ public:
 		}
 	}
     
-	friend void readInfo(const std::ifstream &in) 
+	void readInfo(std::ifstream &in) 
 	{
 		char tmp[3];
 		in.read(tmp, 2);
 		this->length = _2_u2(tmp);
-		char *buf = new char[this->length + 1];
-        memset(buf, 0, this->length + 1);
-		in.read(buf, this->len);
+		this->data = new char[this->length + 1];
+        memset(this->data, 0, this->length + 1);
+		in.read(this->data, this->length);
 	}
 
 private:

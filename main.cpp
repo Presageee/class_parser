@@ -1,6 +1,7 @@
 #include "common.h"
 #include <iostream>
 #include <fstream>
+#include "field_info.h"
 using namespace std;
 
 int main()
@@ -9,10 +10,7 @@ int main()
     file.open("C:\\Users\\LJT\\Desktop\\fashen.txt", ios::binary | ios::in);
     if (!file)
         cout << "open error" << endl;
-    cout << file.get() << endl;
-    char tmp[3];
-    memset(tmp, 0, 3);
-    file.read(tmp, 2);
-    cout << tmp << endl;
+    field_info f;
+    f.field_info::readInfo(file);
     return 0;
 }
