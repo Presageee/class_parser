@@ -3,7 +3,11 @@
 class constant_interface_method_ref: public constant_info
 {
 public:
-    friend void readInfo(const std::ifstream &in)
+    constant_interface_method_ref(u1 tag)
+    {
+        constant_info(tag);
+    }
+    void readInfo(std::ifstream &in)
     {
         char c_tmp[2];
         char n_tmp[2];

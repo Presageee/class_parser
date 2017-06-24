@@ -1,10 +1,15 @@
 #pragma once
 #include "constant_info.h"
 
-class constant_integer : constant_info
+class constant_integer : public constant_info
 {
 public:
-    friend void readInfo(const std::ifstream &in)
+    constant_integer(u1 tag)
+    {
+        constant_info(tag);
+    }
+
+    void readInfo(std::ifstream &in)
     {
         char data[4];
         in.read(data, 4);

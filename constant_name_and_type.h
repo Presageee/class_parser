@@ -3,7 +3,12 @@
 class constant_name_and_type: public constant_info
 {
 public:
-    friend void readInfo(const std::ifstream &in)
+    constant_name_and_type(u1 tag)
+    {
+        constant_info(tag);
+    }
+
+    void readInfo(std::ifstream &in)
     {
         char c_tmp[2];
         char n_tmp[2];

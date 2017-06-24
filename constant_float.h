@@ -3,7 +3,11 @@
 class constant_float: public constant_info
 {
 public:
-    friend void readInfo(const std::ifstream &in)
+    constant_float(u1 tag)
+    {
+        constant_info(tag);
+    }
+    void readInfo(std::ifstream &in)
     {
         char tmp[4];
         in.read(tmp, 4);

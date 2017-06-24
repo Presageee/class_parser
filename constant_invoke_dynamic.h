@@ -5,7 +5,11 @@
 class constant_invoke_dynamic : public constant_info
 {
 public:
-    friend void readInfo(const std::ifstream &in)
+    constant_invoke_dynamic(u1 tag)
+    {
+        constant_info(tag);
+    }
+    void readInfo(std::ifstream &in)
     {
         char b_tmp[2];
         char n_tmp[2];

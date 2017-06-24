@@ -56,3 +56,7 @@
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
 #define _2_u2(val) val[0] << 8 | val[1]
 #define _2_u8(val) val[7] | val[6] << 8 | val[5] << 16 |val[4] << 24 | val[3] << 32 | val[2] << 40 | val[1] << 48 | val[0] << 56 
+
+
+#define OK 1
+#define ERR 0
