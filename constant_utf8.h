@@ -8,15 +8,15 @@ public:
     {
         constant_info(tag);
     }
-	~constant_utf8()
-	{
-		if (nullptr != data)
-		{
-			delete[]data;
-		}
-	}
+    ~constant_utf8()
+    {
+        if (nullptr != data)
+        {
+            delete[]data;
+        }
+    }
     
-	void readInfo(std::ifstream &in) 
+    void readInfo(std::ifstream &in) 
 	{
 		char tmp[3];
 		in.read(tmp, 2);
