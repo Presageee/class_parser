@@ -52,11 +52,19 @@
 #define u2 unsigned short
 #define u4 unsigned int
 #define u8 double
-//& 0xFF È¡¸ß°ËÎ» 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
+//& 0xFF top 8, 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
+
+//to unsigned int
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
+//to unsigned short
 #define _2_u2(val) val[0] << 8 | val[1]
+//to double
 #define _2_u8(val) val[7] | val[6] << 8 | val[5] << 16 |val[4] << 24 | val[3] << 32 | val[2] << 40 | val[1] << 48 | val[0] << 56 
 
 
 #define OK 1
 #define ERR 0
+
+#include <iostream>
+#include <cstdlib>
+#define CHECK_AND_PRINT(val, str1, str2) if (val == OK) {std::cout << str1 << std::endl;} else {std::cout << str2 << std::endl; exit(0);}
