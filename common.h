@@ -68,3 +68,4 @@
 #include <iostream>
 #include <cstdlib>
 #define CHECK_AND_PRINT(val, str1, str2) if (val == OK) {std::cout << str1 << std::endl;} else {std::cout << str2 << std::endl; exit(0);}
+#define PRINT(str) std::cout << str << std::endl;
