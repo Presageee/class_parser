@@ -1,4 +1,3 @@
-#pragma once
 #include "common.h"
 #include "constant_info.h"
 #include "field_info.h"
@@ -27,9 +26,57 @@ public:
         CHECK_AND_PRINT(readMagic(magic), "[info] >>> read magic success",
             "[error] >>> read magic error");
 
-        //todo:
-        //parse version and so on
-        CHECK_AND_PRINT()
+        CHECK_AND_PRINT(readMinorVersion(minor_version), "[info] >>> read minor version success",
+            "[error] >>> read minor version error");
+
+        CHECK_AND_PRINT(readMajorVersion(major_version), "[info] >>> read major version success",
+            "[error] >>> read major version error");
+
+        CHECK_AND_PRINT(readContantPoolCount(constant_pool_count), "[info] >>> read constant pool count success",
+            "[error] >>> read constant pool count error");
+
+        CHECK_AND_PRINT(readConstantInfo(), "[info] >>> read constant info success",
+            "[error] >>> read constant info error");
+
+        CHECK_AND_PRINT(readAccessFlags(access_flags), "[info] >>> read access flag success",
+            "[error] >>> read access flag error");
+
+        CHECK_AND_PRINT(readThisClass(this_class), "[info] >>> read this class success",
+            "[error] >>> read this class error");
+
+        CHECK_AND_PRINT(readSuperClass(super_class), "[info] >>> read super class success",
+            "[error] >>> read super class error");
+
+        CHECK_AND_PRINT(readInterfacesCount(interfaces_count), "[info] >>> read interface count success",
+            "[error] >>> read interface count success");
+
+        CHECK_AND_PRINT(readInterfaces(), "[info] >>> read interfaces success",
+            "[error] >>> read interfaces error");
+
+        CHECK_AND_PRINT(readFeildCount(field_count), "[info] >>> read field count success",
+            "[error] >>> read field count error");
+
+        CHECK_AND_PRINT(readFieldInfo(), "[info] >>> read field info success",
+            "[error] >>> read field error");
+        
+        CHECK_AND_PRINT(readMethodCount(method_count), "[info] >>> read method count success",
+            "[error] >>> read method count error");
+
+        CHECK_AND_PRINT(readMethodInfo(), "[info] >>> read method info success",
+            "[error] >>> read method info error");
+
+        CHECK_AND_PRINT(readAttributeCount(attributes_count), "[info] >>> read attribute count success",
+            "[error] >>> read attribute count error");
+
+        CHECK_AND_PRINT(readAttributeInfo(), "[info] >>> read attribute info success",
+            "[error] >>> read attribute info error");
+
+        PRINT("[info] parse class success");
+    }
+
+    void display()
+    {
+        //todo
     }
 //method
 protected:
@@ -80,15 +127,15 @@ protected:
             u1 tag;
             if (readTag(tag) == OK)
             {
-                constant_info data;
-                if (factory.getInstance(tag, data) != OK)
+                constant_info* data;
+                if (factory.getInstance(tag, *data) != OK)
                 {
                     return ERR;
                 }
-                info[i] = data;
+                info[i] = *data;
                 
                 //read info
-                data.readInfo(input);
+                data->readInfo(input);
             }
         }
 
@@ -246,7 +293,7 @@ private:
     constant_info* info = nullptr;
     u2 access_flags;
     u2 this_class;
-    u2 spuer_class;
+    u2 super_class;
     u2 interfaces_count;
     u2* interfaces = nullptr;
     u2 field_count;
