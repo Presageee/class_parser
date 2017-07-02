@@ -4,9 +4,9 @@
 class constant_utf8 : public constant_info
 {
 public:
-    constant_utf8(u1 tag)
+    constant_utf8(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     ~constant_utf8()
     {

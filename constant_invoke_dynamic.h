@@ -5,9 +5,9 @@
 class constant_invoke_dynamic : public constant_info
 {
 public:
-    constant_invoke_dynamic(u1 tag)
+    constant_invoke_dynamic(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     void readInfo(std::ifstream &in)
     {

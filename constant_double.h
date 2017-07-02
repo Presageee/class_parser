@@ -3,9 +3,9 @@
 class constant_double: public constant_info
 {
 public:
-    constant_double(u1 tag)
+    constant_double(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     void readInfo(std::ifstream &in)
     {

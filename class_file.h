@@ -4,6 +4,7 @@
 #include "method_info.h"
 #include "constant_info_factory.h"
 #include <fstream>
+#include <vector>
 
 class class_file
 {
@@ -114,26 +115,26 @@ protected:
 
     int readConstantInfo()
     {
-        if (info == nullptr)
-        {
-            info = new constant_info[constant_pool_count];
-        }
+        //if (info == nullptr)
+        //{
+        //    info = new constant_info[constant_pool_count];
+        //}
 
         constant_info_factory factory;
         factory.init();//init map
 
-        for (int i = 0; i < constant_pool_count; i++)
+        for (int i = 1; i < constant_pool_count; i++)
         {
             u1 tag;
             if (readTag(tag) == OK)
             {
-                constant_info* data;
-                if (factory.getInstance(tag, *data) != OK)
+                constant_info* data = nullptr;
+                if (factory.getInstance(tag, &data) != OK)
                 {
                     return ERR;
                 }
-                info[i] = *data;
-                
+                //info[i] = *data;
+                info.push_back(data);
                 //read info
                 data->readInfo(input);
             }
@@ -184,10 +185,10 @@ protected:
 
     int readInterfaces()
     {
-        if (interfaces == nullptr)
-        {
-            interfaces = new u2[interfaces_count];
-        }
+        //if (interfaces == nullptr)
+        //{
+        //    interfaces = new u2[interfaces_count];
+        //}
 
         char byte[2];
         for (int i = 0; i < interfaces_count; i++)
@@ -197,7 +198,8 @@ protected:
             u2 *data = new u2;
             *data = _2_u2(byte);
 
-            interfaces[i] = *data;
+            interfaces.push_back(data);
+            //interfaces[i] = *data;
 
         }
 
@@ -214,17 +216,18 @@ protected:
 
     int readFieldInfo()
     {
-        if (fields == nullptr)
-        {
-            fields = new field_info[field_count];
-        }
+        //if (fields == nullptr)
+        //{
+        //    fields = new field_info[field_count];
+        //}
 
         for (int i = 0; i < field_count; i++)
         {
             field_info *field = new field_info;
             field->readInfo(input);
 
-            fields[i] = *field;
+            fields.push_back(field);
+            //fields[i] = *field;
         }
 
         return OK;
@@ -240,17 +243,18 @@ protected:
 
     int readMethodInfo()
     {
-        if (methods == nullptr)
+        /*if (methods == nullptr)
         {
             methods = new method_info[method_count];
-        }
+        }*/
 
         for (int i = 0; i < method_count; i++)
         {
             method_info *method = new method_info;
             method->readInfo(input);
 
-            methods[i] = *method;
+            methods.push_back(method);
+            //methods[i] = *method;
         }
 
         return OK;
@@ -266,17 +270,18 @@ protected:
 
     int readAttributeInfo()
     {
-        if (attributes == nullptr)
-        {
-            attributes = new attribute_info[attributes_count];
-        }
+        //if (attributes == nullptr)
+        //{
+        //    attributes = new attribute_info[attributes_count];
+        //}
 
         for (int i = 0; i < attributes_count; i++)
         {
             attribute_info *attribute = new attribute_info;
             attribute->readInfo(input);
 
-            attributes[i] = *attribute;
+            attributes.push_back(attribute);
+            //attributes[i] = *attribute;
         }
 
         return OK;
@@ -290,16 +295,21 @@ private:
     u2 minor_version;
     u2 major_version;
     u2 constant_pool_count;
-    constant_info* info = nullptr;
+    //constant_info* info = nullptr;
+    std::vector<constant_info*> info;
     u2 access_flags;
     u2 this_class;
     u2 super_class;
     u2 interfaces_count;
-    u2* interfaces = nullptr;
+    //u2* interfaces = nullptr;
+    std::vector<u2*> interfaces;
     u2 field_count;
-    field_info* fields = nullptr;
+    //field_info* fields = nullptr;
+    std::vector<field_info*> fields;
     u2 method_count;
-    method_info* methods = nullptr;
+    std::vector<method_info*> methods;
+    //method_info* methods = nullptr;
     u2 attributes_count;
-    attribute_info* attributes = nullptr;
+    std::vector<attribute_info*> attributes;
+    //attribute_info* attributes = nullptr;
 };

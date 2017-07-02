@@ -3,9 +3,9 @@
 class constant_field_ref: public constant_info
 {
 public:
-    constant_field_ref(u1 tag)
+    constant_field_ref(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     void readInfo(std::ifstream &in)
     {
