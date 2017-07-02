@@ -3,9 +3,9 @@
 class constant_float: public constant_info
 {
 public:
-    constant_float(u1 tag)
+    constant_float(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     void readInfo(std::ifstream &in)
     {

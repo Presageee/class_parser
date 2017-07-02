@@ -4,9 +4,9 @@
 class constant_method_type : public constant_info
 {
 public:
-    constant_method_type(u1 tag)
+    constant_method_type(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
 
     void readInfo(std::ifstream &in)

@@ -3,9 +3,9 @@
 class constant_long: public constant_info
 {
 public:
-    constant_long(u1 tag)
+    constant_long(u1 tag):constant_info(tag)
     {
-        constant_info(tag);
+        
     }
     void readInfo(std::ifstream &in)
     {
