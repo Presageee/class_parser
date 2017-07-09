@@ -54,7 +54,7 @@
 #define u8 double
 //& 0xFF top 8, 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
 
-//to unsigned int
+//to float
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
 //to unsigned short
 #define _2_u2(val) val[0] << 8 | val[1]
@@ -69,3 +69,4 @@
 #include <cstdlib>
 #define CHECK_AND_PRINT(val, str1, str2) if (val == OK) {std::cout << str1 << std::endl;} else {std::cout << str2 << std::endl; exit(0);}
 #define PRINT(str) std::cout << str << std::endl;
+#define CHECK_INDEX(val) val  < 0 ? ERR : OK

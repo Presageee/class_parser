@@ -1,6 +1,9 @@
 #pragma once
 #include "common.h"
 #include <fstream>
+#include <vector>
+#include <iomanip>
+
 class constant_info
 {
 public:
@@ -13,6 +16,8 @@ public:
 		this->tag = tag;
 	}
     virtual void readInfo(std::ifstream &in) {};
+
+    virtual void display(const std::vector<constant_info*> &info) {};
 private:
 	u1 tag;
 };

@@ -14,5 +14,5 @@ public:
         this->val = _2_u4(tmp);
     }
 private:
-    u4 val;
+    float val;
 };
