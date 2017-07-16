@@ -18,14 +18,18 @@ public:
     
     void readInfo(std::ifstream &in) 
 	{
-		char tmp[3];
+		char tmp[2];
 		in.read(tmp, 2);
 		this->length = _2_u2(tmp);
 		this->data = new char[this->length + 1];
-    memset(this->data, 0, this->length + 1);
+        memset(this->data, 0, this->length + 1);
 		in.read(this->data, this->length);
 	}
-
+    
+    void disaply(const std::vector<constant_info*> &info)
+    {
+        std::cout << std::setw(20) << data;
+    }
 private:
 	u2 length;
 	char *data;

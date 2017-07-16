@@ -22,8 +22,26 @@ public:
         this->attribute_name_index = _2_u2(a_tmp);
         this->attribute_length = _2_u4(l_tmp);
         this->info = new char[this->attribute_length + 1];
-        info[this->attribute_length] = '\0';
         in.read(info, this->attribute_length);
+        info[this->attribute_length] = '\0';
+    }
+
+    void disaply()
+    {
+        if (ERR == CHECK_INDEX(attribute_name_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_attribute_name_index = attribute_name_index - 1;
+
+        if (OK == CHECK_INDEX(real_attribute_name_index))
+        {
+            std::cout << std::setw(20) << "#" << real_attribute_name_index;
+        }
+
+        std::cout << std::setw(20) << info;
     }
 private:
     u2 attribute_name_index;
