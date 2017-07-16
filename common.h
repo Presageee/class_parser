@@ -63,7 +63,7 @@
 #define u2 unsigned short
 #define u4 unsigned int
 #define u8 double
-//& 0xFF top 8, 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
+//& 0xFF top 8, 0000Â£Â¬0000Â£Â¬0000Â£Â¬0010 & 0xFF => 0000Â£Â¬0010
 
 //to float
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
@@ -96,3 +96,4 @@ void init()
 
     handler_factory.init();
 }
+
