@@ -15,6 +15,11 @@ public:
         in.read(data, 4);
         this->val = _2_u4(data);
     }
+
+    void display(const std::vector<constant_info*> &info)
+    {
+        std::cout << std::setw(20) << val;
+    }
 private:
     u4 val;
 };

@@ -5,6 +5,11 @@
 #include "constant_info_factory.h"
 #include <fstream>
 #include <vector>
+#include <iostream>
+#include <iomanip>
+
+
+extern constant_info_factory info_factory;
 
 class class_file
 {
@@ -77,7 +82,27 @@ public:
 
     void display()
     {
-        //todo
+        printMagic();
+
+        printMinorVersion();
+
+        printMajorVersion();
+        
+        printAccessFlags();
+
+        printConstantPool();
+
+        printThisClass();
+
+        printSuperClass();
+
+        printInterfaces();
+
+        printFields();
+
+        printMethods();
+
+        printAttributes();
     }
 //method
 protected:
@@ -120,8 +145,8 @@ protected:
         //    info = new constant_info[constant_pool_count];
         //}
 
-        constant_info_factory factory;
-        factory.init();//init map
+        //constant_info_factory factory;
+        info_factory.init();//init map
 
         for (int i = 1; i < constant_pool_count; i++)
         {
@@ -129,7 +154,7 @@ protected:
             if (readTag(tag) == OK)
             {
                 constant_info* data = nullptr;
-                if (factory.getInstance(tag, &data) != OK)
+                if (info_factory.getInstance(tag, &data) != OK)
                 {
                     return ERR;
                 }
@@ -287,6 +312,208 @@ protected:
         return OK;
     }
 
+    void printMagic()
+    {
+        std::cout << "magic : " << magic << std::endl;
+    }
+
+    void printMinorVersion()
+    {
+        std::cout << "minor version : " << minor_version << std::endl;
+    }
+
+    void printMajorVersion()
+    {
+        std::cout << "major version : " << major_version << std::endl;
+    }
+
+    void printConstantPool()
+    {
+        std::cout << "Constant pool size : " << constant_pool_count - 1 << std::endl;
+        std::cout << "Constant pool : " << std::endl;
+
+        int counter = 1;
+        for (auto& val : info)
+        {
+            std::cout << std::setw(5) << "#" << counter++;
+            val->display(info);
+            std::cout << std::endl;
+        }
+    }
+
+    void printAccessFlags()
+    {
+        std::cout << "flags : ";
+        bool isOut = false;
+        if (access_flags & C_ACC_PUBLIC)
+        {
+            std::cout << "PUBLIC";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_FINAL)
+        {
+            CHECK_FIRST_OUTPUT(isOut);
+            std::cout << "FINAL";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_SUPER)
+        {
+            CHECK_FIRST_OUTPUT(isOut);
+            std::cout << "SUPER";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_INTERFACE)
+        {
+            CHECK_FIRST_OUTPUT(true);
+            std::cout << "INTERFACE";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_ABSTRACT)
+        {
+            CHECK_FIRST_OUTPUT(true);
+            std::cout << "ABSTRACT";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_SYNTHETIC)
+        {
+            CHECK_FIRST_OUTPUT(true);
+            std::cout << "SYNTHETIC";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_ANNOTATION)
+        {
+            CHECK_FIRST_OUTPUT(true);
+            std::cout << "ANNOTATION";
+            isOut = true;
+        }
+
+        if (access_flags & C_ACC_ENUM)
+        {
+            CHECK_FIRST_OUTPUT(true);
+            std::cout << "ENUM";
+            isOut = true;
+        }
+
+        std::cout << std::endl;
+    }
+
+    void printThisClass()
+    {
+        std::cout << "Class ";
+
+        if (ERR == CHECK_INDEX(this_class))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_this_class = this_class - 1;
+
+        if (OK == CHECK_INDEX(real_this_class))
+        {
+            info[real_this_class]->display(info);
+        }
+
+        std::cout << std::endl;
+    }
+
+    void printSuperClass()
+    {
+        std::cout << " :";
+
+        if (ERR == CHECK_INDEX(super_class))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_super_class = super_class - 1;
+
+        if (OK == CHECK_INDEX(real_super_class))
+        {
+            info[real_super_class]->display(info);
+        }
+
+        std::cout << std::endl;
+    }
+
+    void printInterfaces()
+    {
+        if (!interfaces_count)
+        {
+            return;
+        }
+
+        std::cout << "Interface : ";
+        
+        for (auto &val : interfaces)
+        {
+            if (ERR == CHECK_INDEX(*val))
+            {
+                PRINT("[error] >>> index out of -1");
+                exit(0);
+            }
+
+            u2 real_interface = *val - 1;
+
+            if (OK == CHECK_INDEX(real_interface))
+            {
+                info[real_interface]->display(info);
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    void printFields()
+    {
+        if (!field_count)
+        {
+            return;
+        }
+
+        std::cout << "Field : " << std::endl;
+        for (auto &val : fields)
+        {
+            val->display(info);
+            std::cout << std::endl;
+        }
+    }
+
+    void printMethods()
+    {
+        if (!method_count)
+        {
+            return;
+        }
+
+        std::cout << "Method :" << std::endl;
+        for (auto &val : methods)
+        {
+            val->display(info);
+            std::cout << std::endl;
+        }
+    }
+
+    void printAttributes()
+    {
+        if (!attributes_count)
+        {
+            return;
+        }
+
+        std::cout << "Attribute : " << std::endl;
+        for (auto &val : attributes)
+        {
+            val->disaply();
+            std::cout << std::endl;
+        }
+    }
 protected:
     std::ifstream input;
 

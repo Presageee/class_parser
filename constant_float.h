@@ -13,6 +13,11 @@ public:
         in.read(tmp, 4);
         this->val = _2_u4(tmp);
     }
+
+    void display(const std::vector<constant_info*> &info)
+    {
+        std::cout << std::setw(20) << val;
+    }
 private:
     float val;
 };

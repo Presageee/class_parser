@@ -25,7 +25,11 @@ public:
         memset(this->data, 0, this->length + 1);
 		in.read(this->data, this->length);
 	}
-
+    
+    void disaply(const std::vector<constant_info*> &info)
+    {
+        std::cout << std::setw(20) << data;
+    }
 private:
 	u2 length;
 	char *data;

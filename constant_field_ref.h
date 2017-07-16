@@ -29,7 +29,8 @@ public:
 
         if (OK == CHECK_INDEX(real_class_index))
         {
-            info[real_class_index]->display(info);
+            //info[real_class_index]->display(info);
+            std::cout << "#" << real_class_index << ",";
         }
 
         if (ERR == CHECK_INDEX(name_and_type_index))
@@ -42,7 +43,8 @@ public:
 
         if (OK == CHECK_INDEX(real_name_and_type_index))
         {
-            info[real_name_and_type_index]->display(info);
+            //info[real_name_and_type_index]->display(info);
+            std::cout << "#" << real_name_and_type_index << std::endl;
         }
     }
 private:

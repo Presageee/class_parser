@@ -14,10 +14,38 @@ public:
         char n_tmp[2];
         in.read(c_tmp, 2);
         in.read(n_tmp, 2);
-        this->class_index = _2_u2(c_tmp);
-        this->name_and_type_index = _2_u2(n_tmp);
+        this->name_index = _2_u2(c_tmp);
+        this->description_index = _2_u2(n_tmp);
+    }
+    void disaply(const std::vector<constant_info*> &info)
+    {
+        if (ERR == CHECK_INDEX(name_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_name_index = name_index - 1;
+
+        if (OK == CHECK_INDEX(real_name_index))
+        {
+            std::cout << "#" << real_name_index << ",";
+        }
+
+        if (ERR == CHECK_INDEX(description_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_description_index = description_index - 1;
+
+        if (OK == CHECK_INDEX(real_description_index))
+        {
+            std::cout << "#" << real_description_index;
+        }
     }
 private:
-    u2 class_index;
-    u2 name_and_type_index;
+    u2 name_index;
+    u2 description_index;
 };

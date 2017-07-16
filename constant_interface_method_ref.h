@@ -16,6 +16,35 @@ public:
         this->class_index = _2_u2(c_tmp);
         this->name_and_type_index = _2_u2(n_tmp);
     }
+
+    void disaply(const std::vector<constant_info*> &info)
+    {
+        if (ERR == CHECK_INDEX(class_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_class_index = class_index - 1;
+
+        if (OK == CHECK_INDEX(real_class_index))
+        {
+            std::cout << "#" << real_class_index << ",";
+        }
+
+        if (ERR == CHECK_INDEX(name_and_type_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_name_and_type_index = name_and_type_index - 1;
+
+        if (OK == CHECK_INDEX(real_name_and_type_index))
+        {
+            std::cout << "#" << real_name_and_type_index;
+        }
+    }
 private:
     u2 class_index;
     u2 name_and_type_index;
