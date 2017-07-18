@@ -26,9 +26,15 @@ public:
 		in.read(this->data, this->length);
 	}
     
-    void disaply(const std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "Utf8";
         std::cout << std::setw(20) << data;
+    }
+
+    void outputVal(const std::vector<constant_info*> &info)
+    {
+        std::cout << data;
     }
 private:
 	u2 length;

@@ -16,6 +16,7 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "Float";
         std::cout << std::setw(20) << val;
     }
 private:

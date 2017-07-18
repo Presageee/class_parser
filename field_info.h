@@ -58,7 +58,7 @@ public:
 
         for (auto &val : attributes)
         {
-            val->disaply();
+            val->disaply(info);
         }
     }
 

@@ -26,7 +26,7 @@ public:
         info[this->attribute_length] = '\0';
     }
 
-    void disaply()
+    void disaply(const std::vector<constant_info*> &info)
     {
         if (ERR == CHECK_INDEX(attribute_name_index))
         {
@@ -38,11 +38,13 @@ public:
 
         if (OK == CHECK_INDEX(real_attribute_name_index))
         {
-            std::cout << std::setw(20) << "#" << real_attribute_name_index;
+            //std::cout << std::setw(20) << "#" << real_attribute_name_index;
+            info[real_attribute_name_index]->outputVal(info);
         }
 
-        std::cout << std::setw(20) << info;
+        std::cout << std::setw(20) << this->info;
     }
+
 private:
     u2 attribute_name_index;
     u4 attribute_length;

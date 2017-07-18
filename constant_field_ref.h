@@ -19,6 +19,7 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "FieldRef";
         if (ERR == CHECK_INDEX(class_index))
         {
             PRINT("[error] >>> index out of -1");
@@ -29,8 +30,8 @@ public:
 
         if (OK == CHECK_INDEX(real_class_index))
         {
-            //info[real_class_index]->display(info);
-            std::cout << "#" << real_class_index << ",";
+            std::string msg("#");
+            std::cout << std::setw(20) << msg.append(std::to_string(real_class_index)) << ",";
         }
 
         if (ERR == CHECK_INDEX(name_and_type_index))
@@ -44,7 +45,7 @@ public:
         if (OK == CHECK_INDEX(real_name_and_type_index))
         {
             //info[real_name_and_type_index]->display(info);
-            std::cout << "#" << real_name_and_type_index << std::endl;
+            std::cout << "#" << real_name_and_type_index;
         }
     }
 private:

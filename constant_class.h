@@ -34,7 +34,24 @@ public:
         std::string msg("#");
         std::cout << std::setw(20) << msg.append(std::to_string(real_index));
 
-        info[real_index]->display(info);
+        //info[real_index]->display(info);
+    }
+
+    void outputVal(const std::vector<constant_info*> &info)
+    {
+        if (ERR == CHECK_INDEX(name_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_index = name_index - 1;
+
+        if (ERR == CHECK_INDEX(real_index))
+        {
+            return;
+        }
+        info[real_index]->outputVal(info);
     }
 private:
     u2 name_index;

@@ -21,6 +21,9 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+
+        std::cout << std::setw(20) << "InvokeHandler";
+
         if (ERR == CHECK_INDEX(bootstrap_method_attr_index))
         {
             PRINT("[error] >>> index out of -1");
@@ -31,7 +34,9 @@ public:
 
         if (OK == CHECK_INDEX(real_bootstrap_method_attr_index))
         {
-            std::cout << "#" << real_bootstrap_method_attr_index << ",";
+            std::string msg("#");
+            std::cout << std::setw(20) << msg.append(std::to_string(real_bootstrap_method_attr_index)) << ",";
+
         }
 
         if (ERR == CHECK_INDEX(name_and_type_index))

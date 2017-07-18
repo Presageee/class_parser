@@ -417,10 +417,11 @@ protected:
 
         if (OK == CHECK_INDEX(real_this_class))
         {
-            info[real_this_class]->display(info);
+            info[real_this_class]->outputVal(info);
         }
 
-        std::cout << std::endl;
+        std::cout；
+
     }
 
     void printSuperClass()
@@ -437,7 +438,7 @@ protected:
 
         if (OK == CHECK_INDEX(real_super_class))
         {
-            info[real_super_class]->display(info);
+            info[real_super_class]->outputVal(info);
         }
 
         std::cout << std::endl;
@@ -495,7 +496,7 @@ protected:
         std::cout << "Method :" << std::endl;
         for (auto &val : methods)
         {
-            val->display(info);
+            val->outputVal(info);
             std::cout << std::endl;
         }
     }
@@ -510,7 +511,7 @@ protected:
         std::cout << "Attribute : " << std::endl;
         for (auto &val : attributes)
         {
-            val->disaply();
+            val->disaply(info);
             std::cout << std::endl;
         }
     }

@@ -19,6 +19,7 @@ public:
     }
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "MethodHandler";
         std::string msg;
         std::string err = "null";
         if (err.compare((msg = handler_factory.getType(reference_kind))))
@@ -39,7 +40,8 @@ public:
 
         if (OK == CHECK_INDEX(real_reference_index))
         {
-            std::cout << "#" << real_reference_index;
+            std::string msg_("#");
+            std::cout << msg.append(std::to_string(real_reference_index));
         }
     }
 private:

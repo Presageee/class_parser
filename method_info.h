@@ -57,7 +57,45 @@ public:
 
         for (auto &val : attributes)
         {
-            val->disaply();
+            val->disaply(info);
+        }
+    }
+
+    void outputVal(const std::vector<constant_info*> &info) 
+    {
+        printAccessFlags();
+
+        if (ERR == CHECK_INDEX(name_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_name_index = name_index - 1;
+
+        if (OK == CHECK_INDEX(real_name_index))
+        {
+            //std::cout << "#" << real_name_index;
+            info[real_name_index]->outputVal(info);
+        }
+
+        if (ERR == CHECK_INDEX(descriptor_index))
+        {
+            PRINT("[error] >>> index out of -1");
+            exit(0);
+        }
+
+        u2 real_descriptor_index = descriptor_index - 1;
+
+        if (OK == CHECK_INDEX(real_descriptor_index))
+        {
+            //std::cout << std::setw(20) << "#" << real_descriptor_index;
+            info[real_descriptor_index]->outputVal(info);
+        }
+
+        for (auto &val : attributes)
+        {
+            val->disaply(info);
         }
     }
 private:
