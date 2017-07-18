@@ -20,6 +20,7 @@ public:
     void display(const std::vector<constant_info*> &info)
     {
         std::cout << std::setw(20) << "InterfaceMethodRef";
+
         if (ERR == CHECK_INDEX(class_index))
         {
             PRINT("[error] >>> index out of -1");

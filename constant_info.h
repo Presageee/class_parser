@@ -18,7 +18,7 @@ public:
     virtual void readInfo(std::ifstream &in) {};
 
     virtual void display(const std::vector<constant_info*> &info) {};
-
+  
     virtual void outputVal(const std::vector<constant_info*> &info) {};
 private:
 	u1 tag;

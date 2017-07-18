@@ -420,7 +420,8 @@ protected:
             info[real_this_class]->outputVal(info);
         }
 
-        std::cout;
+        std::cout；
+
     }
 
     void printSuperClass()
