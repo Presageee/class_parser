@@ -18,6 +18,7 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "MethodType";
         if (ERR == CHECK_INDEX(description_index))
         {
             PRINT("[error] >>> index out of -1");
@@ -29,7 +30,8 @@ public:
         if (OK == CHECK_INDEX(real_description_index))
         {
             //info[real_class_index]->display(info);
-            std::cout << "#" << real_description_index << ",";
+            std::string msg("#");
+            std::cout << std::setw(20) << msg.append(std::to_string(real_description_index)) << ",";
         }
 
     }

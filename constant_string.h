@@ -16,6 +16,7 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "String";
         if (ERR == CHECK_INDEX(string_index))
         {
             PRINT("[error] >>> index out of -1");
@@ -27,7 +28,8 @@ public:
         if (OK == CHECK_INDEX(real_string_index))
         {
             //info[real_class_index]->display(info);
-            std::cout << "#" << real_string_index << ",";
+            std::string msg("#");
+            std::cout << std::setw(20) << msg.append(std::to_string(real_string_index));
         }
 
     }

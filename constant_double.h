@@ -22,6 +22,7 @@ public:
 
     void display(const std::vector<constant_info*> &info)
     {
+        std::cout << std::setw(20) << "Double";
         std::cout << std::setw(20) << val;
     }
 private:
