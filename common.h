@@ -63,7 +63,7 @@
 #define u2 unsigned short
 #define u4 unsigned int
 #define u8 double
-//& 0xFF top 8, 0000£¬0000£¬0000£¬0010 & 0xFF => 0000£¬0010
+//& 0xFF top 8, 0000Â£Â¬0000Â£Â¬0000Â£Â¬0010 & 0xFF => 0000Â£Â¬0010
 
 //to float
 #define _2_u4(val) val[0] << 24 | val[1] << 16 | val[2] << 8 | val[3]
@@ -86,13 +86,18 @@
 
 #include "method_handler_factory.h"
 #include "constant_info_factory.h"
+#include "verification_type_info_factory.h"
 //gobal var
 constant_info_factory info_factory;
 method_handler_factory handler_factory;
+verification_type_info_factory verification_type_factory;
 
 void init()
 {
     info_factory.init();
 
     handler_factory.init();
+
+    verification_type_factory.init();
 }
+

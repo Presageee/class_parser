@@ -26,7 +26,7 @@ private:
     
     std::map<u1, createInstance> operationMap;
 
-    bool hasKey(const u1 key)
+    inline bool hasKey(const u1 key)
     {
         return operationMap.end() != operationMap.find(key);
     }

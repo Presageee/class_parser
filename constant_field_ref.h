@@ -30,7 +30,6 @@ public:
 
         if (OK == CHECK_INDEX(real_class_index))
         {
-            //info[real_class_index]->display(info);
             std::string msg("#");
             std::cout << std::setw(20) << msg.append(std::to_string(real_class_index)) << ",";
         }
