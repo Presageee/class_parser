@@ -1,6 +1,25 @@
 #pragma once
-#include "verification_type_info.h"
+#include "common.h"
+#include <fstream>
 #include <map>
+
+class verification_type_info
+{
+public:
+    verification_type_info() {};
+
+    verification_type_info(u1 tag)
+    {
+        this->tag = tag;
+    }
+
+    virtual void readInfo(std::ifstream &in) {};
+
+    virtual void display(const std::vector<constant_info*> &info) {};
+
+private:
+    u1 tag;
+};
 
 class top_var_info : public verification_type_info
 {
@@ -9,7 +28,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Top" << std::endl;
     }
@@ -22,7 +41,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Integer" << std::endl;
     }
@@ -35,7 +54,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Float" << std::endl;
     }
@@ -48,7 +67,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Long" << std::endl;
     }
@@ -61,7 +80,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Double" << std::endl;
     }
@@ -74,7 +93,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Null" << std::endl;
     }
@@ -87,7 +106,7 @@ public:
 
     void readInfo(std::ifstream &in) {};
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_UninitializedThis" << std::endl;
     }
@@ -106,7 +125,7 @@ public:
         this->cpool_index = _2_u2(tmp);
     }
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Object, cpool_index => " << info[cpool_index - 1] << std::endl;
     }
@@ -127,7 +146,7 @@ public:
         this->offset = _2_u2(tmp);
     }
 
-    void display(std::vector<constant_info*> &info)
+    void display(const std::vector<constant_info*> &info)
     {
         std::cout << "ITEM_Uninitialized, offset => " << offset << std::endl;
     }
@@ -218,15 +237,15 @@ private:
 
 int verification_type_info_factory::init()
 {
-    infoMap[0] = &verification_type_info_factory::getTop;
-    infoMap[1] = &verification_type_info_factory::getInteger;
-    infoMap[2] = &verification_type_info_factory::getFloat;
-    infoMap[3] = &verification_type_info_factory::getLong;
-    infoMap[4] = &verification_type_info_factory::getDouble;
-    infoMap[5] = &verification_type_info_factory::getNull;
-    infoMap[6] = &verification_type_info_factory::getUninitializedThis;
-    infoMap[7] = &verification_type_info_factory::getObject;
-    infoMap[9] = &verification_type_info_factory::getUninitialized;
+    infoMap[Top_vriable_info] = &verification_type_info_factory::getTop;
+    infoMap[Integer_variable_info] = &verification_type_info_factory::getInteger;
+    infoMap[Float_variable_info] = &verification_type_info_factory::getFloat;
+    infoMap[Long_variable_info] = &verification_type_info_factory::getLong;
+    infoMap[Double_variable_info] = &verification_type_info_factory::getDouble;
+    infoMap[Null_variable_info] = &verification_type_info_factory::getNull;
+    infoMap[UninitializedThis_variable_info] = &verification_type_info_factory::getUninitializedThis;
+    infoMap[Object_variable_info] = &verification_type_info_factory::getObject;
+    infoMap[Uninitialized_variable_info] = &verification_type_info_factory::getUninitialized;
 }
 
 int verification_type_info_factory::getInstance(u1 tag, verification_type_info **info)

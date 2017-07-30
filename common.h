@@ -59,6 +59,17 @@
 #define REF_newInvokeSpecial 8
 #define REF_invokeInterface 9
 
+// verifiction type
+#define Top_vriable_info 0
+#define Integer_variable_info 1
+#define Float_variable_info 2
+#define Long_variable_info 3
+#define Double_variable_info 4
+#define Null_variable_info 5
+#define UninitializedThis_variable_info 6
+#define Object_variable_info 7
+#define Uninitialized_variable_info 8
+
 #define u1 unsigned char
 #define u2 unsigned short
 #define u4 unsigned int
@@ -87,10 +98,13 @@
 #include "method_handler_factory.h"
 #include "constant_info_factory.h"
 #include "verification_type_info_factory.h"
+#include "stack_map_frame_factory.h"
+
 //gobal var
 constant_info_factory info_factory;
 method_handler_factory handler_factory;
 verification_type_info_factory verification_type_factory;
+stack_map_frame_factory frame_factory;
 
 void init()
 {
