@@ -43,6 +43,11 @@ public:
 
     }
 
+    u4 getAttributeLength()
+    {
+        return attribute_length;
+    }
+
 private:
     u2 attribute_name_index;
     u4 attribute_length;

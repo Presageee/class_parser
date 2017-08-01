@@ -85,34 +85,39 @@ private:
             std::cout << std::setw(20) << "Class";
             if (ERR == CHECK_INDEX(outer_class_info_index))
             {
-                PRINT("[error] >>> index out of -1");
-                exit(0);
-            }
-
-            u2 real_outer_class_info_index = outer_class_info_index - 1;
-
-            if (OK == CHECK_INDEX(real_outer_class_info_index))
+            //    PRINT("[error] >>> index out of -1");
+                //exit(0);
+            } 
+            else 
             {
-                std::string msg("#");
-                std::cout << std::setw(20) << msg.append(std::to_string(real_outer_class_info_index)) << ",";
-            }
-            std::cout << std::endl;
+                u2 real_outer_class_info_index = outer_class_info_index - 1;
 
+                if (OK == CHECK_INDEX(real_outer_class_info_index))
+                {
+                    std::string msg("#");
+                    std::cout << std::setw(20) << msg.append(std::to_string(real_outer_class_info_index)) << ",";
+                }
+                std::cout << std::endl;
+            }
+
+            
             std::cout << std::setw(20) << "NameAndType";
             if (ERR == CHECK_INDEX(inner_name_index))
             {
-                PRINT("[error] >>> index out of -1");
-                exit(0);
+            //    PRINT("[error] >>> index out of -1");
+              //  exit(0);
             }
-
-            u2 real_inner_name_index = inner_name_index - 1;
-
-            if (OK == CHECK_INDEX(real_inner_name_index))
+            else
             {
-                std::string msg("#");
-                std::cout << std::setw(20) << msg.append(std::to_string(real_inner_name_index)) << ",";
+                u2 real_inner_name_index = inner_name_index - 1;
+
+                if (OK == CHECK_INDEX(real_inner_name_index))
+                {
+                    std::string msg("#");
+                    std::cout << std::setw(20) << msg.append(std::to_string(real_inner_name_index)) << ",";
+                }
+                std::cout << std::endl;
             }
-            std::cout << std::endl;
 
             printAccessFlags();
 
